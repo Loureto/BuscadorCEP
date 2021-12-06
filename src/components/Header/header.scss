@@ -1,0 +1,30 @@
+.header{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 30px 0 30px 0;
+    background-color: var(--color-background);
+    
+    .nav ul{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        list-style: none;
+        gap: 20px;       
+        
+        li a{
+            font-size: 20px;
+            color: var(--color-textprimary);            
+        }
+    }
+
+    p{
+        font-size: 30px;
+        font-weight: bold;
+        color: var(--color-textprimary);
+    }
+}
