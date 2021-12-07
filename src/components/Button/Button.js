@@ -24,6 +24,10 @@ export const Button = (props) =>{
         navigate('/');
     }
 
+    const handleClickBuscar = () =>{
+        navigate('/Resultado');
+    }
+
     return(
         <>
             {props.tipo === tipo.buscaEndereco &&
@@ -39,7 +43,7 @@ export const Button = (props) =>{
             }
 
             {props.tipo === tipo.btnBuscar &&
-                <button className="btn">{props.label}</button>
+                <button onClick={handleClickBuscar} className="btn">{props.label}</button>
             }
         </>  
     );
