@@ -9,7 +9,9 @@ export const Button = (props) =>{
         buscaEndereco: 'buscaEndereco',
         buscaCep: 'buscaCep',
         btnVoltar: 'voltar',
-        btnBuscar: 'buscar'
+        btnBuscar: 'buscar',
+        btnNovaBusca: 'novaBusca',
+        btnImprimir: 'imprimir'
     }
 
     const handleClickBuscaEndereco = () =>{
@@ -28,6 +30,10 @@ export const Button = (props) =>{
         navigate('/Resultado');
     }
 
+    const handleClickNovaBusca = () =>{
+        navigate('/BuscaEndereco');
+    }
+
     return(
         <>
             {props.tipo === tipo.buscaEndereco &&
@@ -44,6 +50,14 @@ export const Button = (props) =>{
 
             {props.tipo === tipo.btnBuscar &&
                 <button onClick={handleClickBuscar} className="btn">{props.label}</button>
+            }
+
+            {props.tipo === tipo.btnNovaBusca &&
+                <button onClick={handleClickNovaBusca} className="btn">{props.label}</button>
+            }
+
+            {props.tipo === tipo.btnImprimir &&
+                <button className="btn">{props.label}</button>
             }
         </>  
     );
