@@ -1,6 +1,6 @@
 import React from "react";
-import { Form } from "../Form/Form";
-import '../Card/card.scss';
+import { Form } from "../components/Form/Form";
+import '../components/Card/card.scss';
 
 export const BuscaEndereco = () =>{
     return(

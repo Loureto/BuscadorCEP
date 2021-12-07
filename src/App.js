@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Footer } from './components/Footer/Footer';
 import { Header } from './components/Header/Header';
-import { BuscaCep } from './components/pages/BuscaCep';
-import { BuscaEndereco } from './components/pages/BuscaEndereco';
-import { Home } from './components/pages/Home';
+import { BuscaCep } from './pages/BuscaCep';
+import { BuscaEndereco } from './pages/BuscaEndereco';
+import { Home } from './pages/Home';
 import './styles/global.scss';
 
 export const App = () =>{

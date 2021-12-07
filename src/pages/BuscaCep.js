@@ -1,8 +1,8 @@
 import React from "react";
-import { Button } from "../Button/Button";
-import { Input } from "../Input/Input";
-import { Label } from "../Label/Label";
-import '../../styles/buscacep.scss';
+import { Button } from "../components/Button/Button";
+import { Input } from "../components/Input/Input";
+import { Label } from "../components/Label/Label";
+import '../styles/buscacep.scss';
 
 export const BuscaCep = () =>{
     return(
