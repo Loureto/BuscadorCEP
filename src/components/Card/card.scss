@@ -3,14 +3,14 @@
     height: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    padding-left: 150px;
+    padding-right: 150px;
 
     .card{
-        width: 63%;
+        width: 100%;
 
         .card-text{
-            margin: 80px 0 50px 0;
+            margin: 40px 0 50px 0;
 
             h1{
                 font-size: 50px;

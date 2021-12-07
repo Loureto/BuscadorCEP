@@ -14,8 +14,8 @@ export const Card = () =>{
                     Aproveite!</p>
                 </div>
                 <div className="card-button">
-                    <Button tipo="buscaEnd" label="Buscar Endereço"/>
-                    <Button tipo="buscCep" label="Buscar CEP"/>
+                    <Button tipo="buscaEndereco" label="Buscar Endereço"/>
+                    <Button tipo="buscaCep" label="Buscar CEP"/>
                 </div>
                 <hr size="8" className="hr"/>
             </div>
