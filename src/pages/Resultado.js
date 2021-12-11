@@ -1,20 +1,29 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button/Button";
+import { Report } from "../reports/report";
+import { Remove, GetValues } from "../storage/globalStorage";
 import '../styles/resultado.scss';
 
 export const Resultado = () =>{
+    const navigate = useNavigate();
+    
+    let bairro = GetValues("Bairro");
+    let uf = GetValues("Uf");
+    let localidade = GetValues("Localidade"); 
+    let cep = GetValues("Cep");
+    let logradouro = GetValues("Logradouro");    
 
-    const {register, handleSubmit} = useForm();
-
-    const onSubmit = (e) =>{
-        console.log(e);
+    const handleClickNovaBusca = () =>{
+        Remove("Cep");
+        Remove("Bairro");
+        Remove("Uf");
+        Remove("Localidade");
+        Remove("Logradouro");
+        
+        navigate('/BuscaEndereco');
     }
-
-    const checkCEP = (e) =>{
-        const cep = e.target.value.replace(/\D/g, '');
-    }
-
+    
     return(
         <div className="container-resultado">
             <div className="card-resultado">
@@ -23,24 +32,24 @@ export const Resultado = () =>{
                     <div className="content-input-result"> 
                         <div>                                 
                             <label>Cep:</label>
-                            <input className="input-resultado"style={{width:250}} type="text" {...register("cep")} />                    
+                            <input className="input-resultado"style={{width:250}} type="text" value={cep} readOnly/>                    
                         </div>
                         <div className="div-result">                            
                             <label>Município / UF:</label>
-                            <input className="input-resultado" style={{width:250}} type="text" {...register("county")} />
+                            <input className="input-resultado" style={{width:250}} type="text" value={`${localidade}/${uf}`} readOnly/>
                         </div>
                         <div className="div-result">
                             <label>Bairro:</label>
-                            <input className="input-resultado" style={{width:250}} type="text" {...register("district")} />
+                            <input className="input-resultado" style={{width:250}} type="text" value={bairro} readOnly/>
                         </div>
                     </div>        
                     <label>Logradouro:</label>
-                    <input className="input-resultado" type="text" {...register("address")} />
+                    <input className="input-resultado" type="text" value={logradouro} readOnly/>
                                                                                                            
                 </form>
                 <div>
-                    <Button tipo="novaBusca" label="Nova Busca" />
-                    <Button tipo="imprimir" label="Imprimir" />
+                    <Button onClick={handleClickNovaBusca} tipo="novaBusca" label="Nova Busca" />
+                    <Button onClick={Report} tipo="imprimir" label="Imprimir" />
                 </div>
                 <hr size="8"  className="hr-resultado"/>                
             </div>

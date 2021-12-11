@@ -1,0 +1,45 @@
+.container-buscacep{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-right: 150px;
+    padding-left: 150px;
+
+    .card-buscacep{
+        width: 100%; 
+
+        .form-buscacep{
+            width: 100%;
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+
+            .select-buscacep{
+                width: 420px;
+                height: 40px;
+                margin-top: 3px;
+                padding-left: 10px;
+                border: 2px solid var(--color-border);
+                border-radius: 0.25rem;
+                font-size: 18px;
+                
+                &:focus{
+                    outline: none;
+                    border: 2px solid var(--color-background);
+                } 
+            }
+        }
+    
+        .card-btn-buscacep{
+            margin-top: 40px;
+        }
+    }
+
+    .hr-buscacep{
+        background-color: rgb(110, 60, 188);
+        margin-top: 50px;
+    }
+}
