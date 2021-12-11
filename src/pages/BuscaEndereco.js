@@ -1,19 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
 import { Button } from "../components/Button/Button";
+import { InputText } from "../components/InputText/InputText";
 import { Label } from "../components/Label/Label";
-import { Loading } from "../components/Loading/Loading";
-
 import { api } from "../services/api";
-import SaveValues from "../storage/globalStorage";
-
+import SaveValues, { Remove } from "../storage/globalStorage";
+import { handleErro, ToastMsg } from "../util/mensagem";
 import '../styles/buscaendereco.scss';
-
 
 export const BuscaEndereco = () =>{
     const navigate = useNavigate();
-    const [valor, setValor] = React.useState([]);
+    const [valor, setValor] = React.useState('');
 
     const cep = "Cep";
     const logradouro = "Logradouro";
@@ -22,7 +19,10 @@ export const BuscaEndereco = () =>{
     const localidade = "Localidade";
 
     async function handleClickBuscar(){
-        try{
+        try{            
+            if(valor === '' || valor === null){
+                return handleErro('Preencha o campo Cep!');
+            }
             const response = await api.get(`${valor}/json`);
             if(!response.data.erro){ 
                 let _cep = response.data.cep;
@@ -36,10 +36,11 @@ export const BuscaEndereco = () =>{
                 await SaveValues(uf, _uf);
                 await SaveValues(localidade, _localidade);
                 await SaveValues(logradouro, _logradouro);
-                navigate('/Resultado');        
+                navigate('/Resultado');                        
             }
-        }catch(e){
-            alert('error');
+        }catch(e){   
+            handleErro('Cep inválido! Por favor verifique se digitou corretamente');         
+            return e;
         }
     }
 
@@ -47,27 +48,26 @@ export const BuscaEndereco = () =>{
         navigate('/');
     }
 
+    const changeCep = (e) =>{
+        let cepp = e.target.value;
+        setValor(cepp);
+    }
+
     return(
         <div className="container-buscaend">            
             <div className="content-buscaend">
                 <hr size="8"  className="hr-buscaend"/>                
-                <form className="card-buscaend">
+                <form className="card-buscaend" >
                     <Label texto="Cep"/>
-                    <input 
-                    type="text" 
-                    onChange={({target}) => setValor(target.value)}
-                    className="input-buscaend" />
-                </form>
-                    
+                    <InputText type="number" onChange={changeCep} placeholder="Ex: 69303000"/> 
+                </form>                                               
                 <div className="card-btn">
                     <Button onClick={handleClickVoltar} tipo="voltar" label="Voltar"/>
                     <Button onClick={handleClickBuscar} tipo="buscar" valor={valor} label="Buscar"/>
-                </div>                
-                
+                </div>
                 <hr size="8"  className="hr-buscaend"/>
-            </div>            
-            
-                        
+            </div>  
+            <ToastMsg />          
         </div>        
     );
 }

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button/Button";
 import { Report } from "../reports/report";
 import { Remove, GetValues } from "../storage/globalStorage";
+import { handleSuccess, ToastMsg } from "../util/mensagem";
 import '../styles/resultado.scss';
 
 export const Resultado = () =>{
@@ -12,7 +13,11 @@ export const Resultado = () =>{
     let uf = GetValues("Uf");
     let localidade = GetValues("Localidade"); 
     let cep = GetValues("Cep");
-    let logradouro = GetValues("Logradouro");    
+    let logradouro = GetValues("Logradouro");  
+    
+    React.useEffect(()=>{
+        handleSuccess('Cep encontrado!');
+    },[]);
 
     const handleClickNovaBusca = () =>{
         Remove("Cep");
@@ -53,6 +58,7 @@ export const Resultado = () =>{
                 </div>
                 <hr size="8"  className="hr-resultado"/>                
             </div>
+            <ToastMsg />
         </div>        
     );
 }
