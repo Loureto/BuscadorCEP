@@ -18,10 +18,15 @@ export const BuscaEndereco = () =>{
     const uf = "Uf";
     const localidade = "Localidade";
 
+    React.useEffect(()=>{
+        document.getElementById('input-buscaCep').focus();
+    },[])
+
     async function handleClickBuscar(){
         try{            
             if(valor === '' || valor === null){
-                return handleErro('Preencha o campo Cep!');
+                return handleErro('Preencha o campo Cep!'),
+                document.getElementById('input-buscaCep').focus();
             }
             const response = await api.get(`${valor}/json`);
             if(!response.data.erro){ 
@@ -40,7 +45,7 @@ export const BuscaEndereco = () =>{
             }
         }catch(e){   
             handleErro('Cep inválido! Por favor verifique se digitou corretamente');         
-            return e;
+            return document.getElementById('input-buscaCep').focus(), setValor('');
         }
     }
 
@@ -59,7 +64,7 @@ export const BuscaEndereco = () =>{
                 <hr size="8"  className="hr-buscaend"/>                
                 <form className="card-buscaend" >
                     <Label texto="Cep"/>
-                    <InputText type="number" onChange={changeCep} placeholder="Ex: 69303000"/> 
+                    <InputText type="number" id="input-buscaCep" value={valor} max="8" onChange={changeCep} placeholder="Ex: 69303000"/> 
                 </form>                                               
                 <div className="card-btn">
                     <Button onClick={handleClickVoltar} tipo="voltar" label="Voltar"/>

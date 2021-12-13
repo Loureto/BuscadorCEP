@@ -14,14 +14,23 @@ export const BuscaCep = () =>{
     const [logra, setLogra] = React.useState('');
     const [muni, setMuni] = React.useState(''); 
 
+    React.useEffect(()=>{
+        document.getElementById('input-select').focus();
+    },[])
+
     async function handleClickPesquisar(){
         try{
             if(uf === "" || uf === null){
-                return handleErro('Campo obrigatório! Selecione a UF');
-            }else if(muni === "" || muni === null){
-                return handleErro('Campo obrigatório! preencha o campo município');
-            }else if(logra === "" || logra === null){
-                return handleErro('Campo obrigatório! preencha o campo logradouro');
+                return handleErro('Campo obrigatório! Selecione a UF'),
+                document.getElementById('input-select').focus();
+            }
+            else if(muni === "" || muni === null){
+                return handleErro('Campo obrigatório! preencha o campo município'),
+                document.getElementById('input-municipio').focus();
+            }
+            else if(logra === "" || logra === null){
+                return handleErro('Campo obrigatório! preencha o campo logradouro'),
+                document.getElementById('input-logradouro').focus();
             }
             const response = await api.get(`${uf}/${muni.replace(/ /g, "%20")}/${logra.replace(/ /g, "%20")}/json`);
             if(!response.data.erro){
@@ -40,7 +49,9 @@ export const BuscaCep = () =>{
                 await SaveValues("_Codigo", _codigo);
 
                 alert(`Cep: ${GetValues("_Cep")}\nCódigo do logradouro: ${GetValues("_Codigo")}\nLocalidade: ${GetValues("_Localidade")}/${GetValues("_Uf")}\nBairro: ${GetValues("_Bairro")}`);
-                
+                setLogra('');
+                setMuni('');
+                setUf('Selecione...');
             }
         }catch(e){
             handleErro('Verifique se as informações estão corretas!');
@@ -51,7 +62,7 @@ export const BuscaCep = () =>{
             Remove("_Uf");
             Remove("_Localidade");
             Remove("_Logradouro");
-            Remove("_Codigo");
+            Remove("_Codigo");            
         }
     }
 
@@ -90,17 +101,17 @@ export const BuscaCep = () =>{
                 
                 <form className="form-buscacep" onSubmit={handleClickPesquisar}>
                     <Label texto="Estado"/>
-                    <select className="select-buscacep" onChange={changeUf} value={uf} defaultValue="Selecione..." style={{marginBottom: 10}}>
+                    <select className="select-buscacep" id="input-select" onChange={changeUf} value={uf} defaultValue="Selecione..." style={{marginBottom: 10}}>
                         <option disabled >Selecione...</option>
                         {tabela_uf.map((item)=>{
                             return <option key={item} value={item}>{item}</option>
                         })}                                         
                     </select>
                     <Label texto="Município"/>
-                    <InputText onChange={changeMunicipio} type="text" placeholder="Ex: são paulo" />
+                    <InputText onChange={changeMunicipio} id="input-municipio" value={muni} type="text" placeholder="Ex: são paulo" />
                         
                     <Label texto="Logradouro"/>
-                    <InputText onChange={changeLogradouro} type="text" placeholder="Ex: rua maria de lurdes"/>
+                    <InputText onChange={changeLogradouro} id="input-logradouro" value={logra} type="text" placeholder="Ex: rua maria de lurdes"/>
                 </form>
                
                 <div className="card-btn-buscacep">
