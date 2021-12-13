@@ -6,6 +6,7 @@ import { BuscaCep } from './pages/BuscaCep';
 import { BuscaEndereco } from './pages/BuscaEndereco';
 
 import { Home } from './pages/Home';
+import { NaoEncontrada } from './pages/NaoEncontrada';
 import { Resultado } from './pages/Resultado';
 import './styles/global.scss';
 
@@ -19,6 +20,7 @@ export const App = () =>{
           <Route path="BuscaEndereco" element={<BuscaEndereco />}/>
           <Route path="BuscaCep" element={<BuscaCep/>}/>
           <Route path="Resultado" element={<Resultado />}/>
+          <Route path="*" element={<NaoEncontrada/>} />
         </Routes>
         <Footer />
       </BrowserRouter>      

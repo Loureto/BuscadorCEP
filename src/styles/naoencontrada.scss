@@ -1,0 +1,32 @@
+.container-img404{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-right: 150px;
+    padding-left: 150px;
+
+    div{
+        width: 100%;        
+
+        img{
+            width: 250px;
+            height: 250px;
+            margin-bottom: 10px;
+        }
+        
+        .hr-pag404{
+            background-color: rgb(110, 60, 188);
+            margin-top: 50px;
+        }
+
+        div{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 40px;
+        }
+    }
+}
