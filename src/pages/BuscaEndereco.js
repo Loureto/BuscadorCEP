@@ -1,10 +1,10 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, useParams } from "react-router-dom";
 import { Button } from "../components/Button/Button";
 import { InputText } from "../components/InputText/InputText";
 import { Label } from "../components/Label/Label";
 import { api } from "../services/api";
-import SaveValues, { Remove } from "../storage/globalStorage";
+import SaveValues from "../storage/globalStorage";
 import { handleErro, ToastMsg } from "../util/mensagem";
 import '../styles/buscaendereco.scss';
 
@@ -72,7 +72,7 @@ export const BuscaEndereco = () =>{
                 </div>
                 <hr size="8"  className="hr-buscaend"/>
             </div>  
-            <ToastMsg />          
+            <ToastMsg />                      
         </div>        
     );
 }

@@ -8,6 +8,7 @@ import { BuscaEndereco } from './pages/BuscaEndereco';
 import { Home } from './pages/Home';
 import { NaoEncontrada } from './pages/NaoEncontrada';
 import { Resultado } from './pages/Resultado';
+
 import './styles/global.scss';
 
 export const App = () =>{
@@ -16,10 +17,10 @@ export const App = () =>{
       <BrowserRouter>
       <Header />
         <Routes>
-          <Route path="/" element={<Home />} />    
+          <Route path="/" element={<Home />} />              
           <Route path="BuscaEndereco" element={<BuscaEndereco />}/>
-          <Route path="BuscaCep" element={<BuscaCep/>}/>
-          <Route path="Resultado" element={<Resultado />}/>
+          <Route path="Resultado" element={<Resultado />}/>                    
+          <Route path="BuscaCep" element={<BuscaCep/>}/>          
           <Route path="*" element={<NaoEncontrada/>} />
         </Routes>
         <Footer />

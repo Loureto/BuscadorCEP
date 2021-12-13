@@ -1,14 +1,15 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "../components/Button/Button";
 import { Report } from "../reports/report";
 import { Remove, GetValues } from "../storage/globalStorage";
 import { handleSuccess, ToastMsg } from "../util/mensagem";
+import { Outlet } from "react-router-dom";
 import '../styles/resultado.scss';
 
 export const Resultado = () =>{
     const navigate = useNavigate();
-    
+
     let bairro = GetValues("Bairro");
     let uf = GetValues("Uf");
     let localidade = GetValues("Localidade"); 
@@ -29,8 +30,8 @@ export const Resultado = () =>{
         navigate('/BuscaEndereco');
     }
     
-    return(
-        <div className="container-resultado">
+    return(        
+        <div id="resultado" className="container-resultado">
             <div className="card-resultado">
                 <hr size="8"  className="hr-resultado"/>
                 <form className="form-resultado">
@@ -59,6 +60,7 @@ export const Resultado = () =>{
                 <hr size="8"  className="hr-resultado"/>                
             </div>
             <ToastMsg />
+            <Outlet />
         </div>        
     );
 }
